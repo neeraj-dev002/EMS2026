@@ -121,7 +121,7 @@
                     </h5>
 
 
-                    <a href="#" class="btn btn-primary">
+                    <a  href="/employees/create" class="btn btn-primary">
                         + Add Employee
                     </a>
 
@@ -205,34 +205,43 @@
 
                         <tbody>
 
+  @foreach ($employees as $employee)
 
                         <tr>
 
                             <td>
-                                EMP001
+                                {{$employee->id}}
                             </td>
 
                             <td>
-                                Rahul Sharma
+                                {{$employee->name}}
                             </td>
 
                             <td>
-                                rahul@gmail.com
+                                {{$employee->email}}
                             </td>
 
                             <td>
-                                IT
+                                {{$employee->department}}
                             </td>
 
                             <td>
-                                Developer
+                                {{$employee->position}}
                             </td>
 
                             <td>
 
+                              @if($employee->status==1)
                                 <span class="badge bg-success">
                                     Active
                                 </span>
+                                @else 
+                                <span class="badge bg-secondary">
+                                    Inactive
+                                </span>
+                                @endif
+
+
 
                             </td>
 
@@ -257,64 +266,12 @@
 
                         </tr>
 
+@endforeach
+
+ 
 
 
-                        <tr>
-
-                            <td>
-                                EMP002
-                            </td>
-
-                            <td>
-                                Priya Singh
-                            </td>
-
-                            <td>
-                                priya@gmail.com
-                            </td>
-
-                            <td>
-                                HR
-                            </td>
-
-                            <td>
-                                HR Manager
-                            </td>
-
-
-                            <td>
-
-                                <span class="badge bg-success">
-                                    Active
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <button class="btn btn-sm btn-info text-white">
-                                    View
-                                </button>
-
-                                <button class="btn btn-sm btn-warning">
-                                    Edit
-                                </button>
-
-                                <button class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
-
-
-                            </td>
-
-
-                        </tr>
-
-
-
-
-                        <tr>
+                        <!-- <tr>
 
                             <td>
                                 EMP003
@@ -364,7 +321,7 @@
                             </td>
 
 
-                        </tr>
+                        </tr> -->
 
 
                         </tbody>
