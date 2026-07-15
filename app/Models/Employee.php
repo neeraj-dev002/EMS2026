@@ -18,5 +18,5 @@ class Employee extends Model
         'status',
         'address',
         'salary'
-    ]
+    ];
 }
