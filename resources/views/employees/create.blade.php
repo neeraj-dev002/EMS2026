@@ -141,7 +141,7 @@
                 <div class="card-body">
 
 
-                    <form>
+                    <form action="{{route('employees.store')}}" method="POST">
 
 
                         <!-- Personal Details -->
@@ -161,7 +161,7 @@
                                     Full Name
                                 </label>
 
-                                <input type="text" class="form-control" placeholder="Enter name">
+                                <input type="text" name="name" class="form-control" placeholder="Enter name">
 
                             </div>
 
@@ -173,7 +173,7 @@
                                     Email
                                 </label>
 
-                                <input type="email" class="form-control" placeholder="Enter email">
+                                <input type="email" name="email" class="form-control" placeholder="Enter email">
 
                             </div>
 
@@ -192,7 +192,7 @@
                                     Phone Number
                                 </label>
 
-                                <input type="text" class="form-control" placeholder="Enter phone">
+                                <input type="text" name="phone" class="form-control" placeholder="Enter phone">
 
                             </div>
 
@@ -205,13 +205,13 @@
                                 </label>
 
 
-                                <select class="form-select">
+                                <select name="gender" class="form-select">
 
                                     <option>
                                         Select Gender
                                     </option>
 
-                                    <option>
+                                    <option value="Male">
                                         Male
                                     </option>
 
@@ -251,21 +251,21 @@
                                 </label>
 
 
-                                <select class="form-select">
+                                <select name="department" class="form-select">
 
                                     <option>
                                         Select Department
                                     </option>
 
-                                    <option>
+                                    <option value="IT">
                                         IT
                                     </option>
 
-                                    <option>
+                                    <option value="HR">
                                         HR
                                     </option>
 
-                                    <option>
+                                    <option value="Finance">
                                         Finance
                                     </option>
 
@@ -288,6 +288,7 @@
 
                                 <input 
                                 type="text" 
+                                name="position"
                                 class="form-control"
                                 placeholder="Example: Developer">
 
@@ -314,6 +315,7 @@
 
                                 <input 
                                 type="date"
+                                name="joining_date"
                                 class="form-control">
 
 
@@ -330,15 +332,15 @@
                                 </label>
 
 
-                                <select class="form-select">
+                                <select name="status" class="form-select">
 
 
-                                    <option>
+                                    <option value="1">
                                         Active
                                     </option>
 
 
-                                    <option>
+                                    <option value="0">
                                         Inactive
                                     </option>
 
@@ -369,6 +371,7 @@
 
                             <textarea 
                             class="form-control"
+                            name="address"
                             rows="3"
                             placeholder="Enter address"></textarea>
 
@@ -387,7 +390,7 @@
                             </a>
 
 
-                            <button class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 Save Employee
                             </button>
 
