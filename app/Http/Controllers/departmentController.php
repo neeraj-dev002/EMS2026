@@ -48,8 +48,8 @@ class departmentController extends Controller
      */
     public function edit(string $id)
     {
-        $departments = Department::all();
-        return view("departments.edit",compact("departments"));
+        $department = Department::find($id);
+        return view("departments.edit",compact("department"));
     }
 
     /**
