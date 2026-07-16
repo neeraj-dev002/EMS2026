@@ -203,26 +203,29 @@
                         <tbody>
 
 
+@foreach ($departments as $department )
+
+
                         <tr>
 
 
                             <td>
-                                DEP001
+                             {{$department->id}}
                             </td>
 
 
                             <td>
-                                Information Technology
+                                {{$department->dep_name}}
                             </td>
 
 
                             <td>
-                                Rahul Sharma
+                                {{$department->dep_head}}
                             </td>
 
 
                             <td>
-                                45
+                               {{$department->total_employees}}
                             </td>
 
 
@@ -257,122 +260,14 @@
 
                         </tr>
 
+@endforeach
 
 
 
-
-                        <tr>
-
-
-                            <td>
-                                DEP002
-                            </td>
+ 
 
 
-                            <td>
-                                Human Resource
-                            </td>
-
-
-                            <td>
-                                Priya Singh
-                            </td>
-
-
-                            <td>
-                                20
-                            </td>
-
-
-                            <td>
-
-                                <span class="badge bg-success">
-                                    Active
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <button class="btn btn-sm btn-info text-white">
-                                    View
-                                </button>
-
-
-                                <button class="btn btn-sm btn-warning">
-                                    Edit
-                                </button>
-
-
-                                <button class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
-
-
-                            </td>
-
-
-                        </tr>
-
-
-
-
-
-                        <tr>
-
-
-                            <td>
-                                DEP003
-                            </td>
-
-
-                            <td>
-                                Finance
-                            </td>
-
-
-                            <td>
-                                Amit Kumar
-                            </td>
-
-
-                            <td>
-                                15
-                            </td>
-
-
-                            <td>
-
-                                <span class="badge bg-secondary">
-                                    Inactive
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <button class="btn btn-sm btn-info text-white">
-                                    View
-                                </button>
-
-
-                                <button class="btn btn-sm btn-warning">
-                                    Edit
-                                </button>
-
-
-                                <button class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
-
-
-                            </td>
-
-
-                        </tr>
-
+ 
 
 
                         </tbody>
