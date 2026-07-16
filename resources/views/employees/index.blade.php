@@ -255,10 +255,14 @@
                                 <button class="btn btn-sm btn-warning">
                                     Edit
                                 </button>
+<form action="{{route('employees.destroy',$employee->id)}}" method="POST">
+ @csrf
+ @method('DELETE')   
 
-                                <button class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
+<button  class="btn btn-sm btn-danger">
+        Delete
+    </button>
+</form>
 
 
                             </td>
