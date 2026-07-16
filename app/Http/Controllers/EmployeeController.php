@@ -39,7 +39,9 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //employee show from the database
+        $employee = Employee::find($id);
+        return view("employees.show",compact("employee"));
     }
 
     /**
@@ -47,7 +49,9 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //employee edit from the database
+         $employee = Employee::findorFail($id);
+         return view("employees.edit",compact("employee"));
     }
 
     /**
@@ -55,7 +59,11 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // employee update in the database
+        $employee = Employee::findorFail($id);
+         
+        $employee->update($request->all());
+        return redirect()->route("employees.index")->with("success","Employee updated successfully");
     }
 
     /**
