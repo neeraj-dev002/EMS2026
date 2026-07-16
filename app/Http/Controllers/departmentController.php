@@ -58,6 +58,9 @@ class departmentController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $department = Department::find($id);
+        $department->update($request->all());
+        return redirect()->route("departments.index")->with("success","Department updated successfully");   
     }
 
     /**
