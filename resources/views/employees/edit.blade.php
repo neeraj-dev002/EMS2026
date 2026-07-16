@@ -12,7 +12,6 @@
 
 
     <style>
-
         body {
             background: #f5f6fa;
         }
@@ -37,7 +36,6 @@
             border-radius: 15px;
             border: none;
         }
-
     </style>
 
 </head>
@@ -46,343 +44,351 @@
 <body>
 
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
 
-<div class="row">
+        <div class="row">
 
 
-    <!-- Sidebar -->
+            <!-- Sidebar -->
 
 
-    <div class="col-md-2 sidebar p-0">
+            <div class="col-md-2 sidebar p-0">
 
 
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
+                <h3 class="text-white text-center py-4">
+                    EMS
+                </h3>
 
 
-        <a href="/dashboard">
-            Dashboard
-        </a>
+                <a href="/dashboard">
+                    Dashboard
+                </a>
 
 
-        <a href="/employees">
-            Employees
-        </a>
+                <a href="/employees">
+                    Employees
+                </a>
 
 
-        <a href="/departments">
-            Departments
-        </a>
+                <a href="/departments">
+                    Departments
+                </a>
 
 
-        <a href="#">
-            Attendance
-        </a>
+                <a href="#">
+                    Attendance
+                </a>
 
 
-        <a href="#">
-            Leaves
-        </a>
+                <a href="#">
+                    Leaves
+                </a>
 
 
-        <a href="#">
-            Payroll
-        </a>
+                <a href="#">
+                    Payroll
+                </a>
 
 
-    </div>
+            </div>
 
 
 
 
-    <!-- Main Content -->
+            <!-- Main Content -->
 
 
-    <div class="col-md-10">
+            <div class="col-md-10">
 
 
-        <nav class="navbar bg-white shadow-sm px-4">
+                <nav class="navbar bg-white shadow-sm px-4">
 
-            <h4>
-                Edit Employee
-            </h4>
+                    <h4>
+                        Edit Employee
+                    </h4>
 
 
-            <span>
-                Admin
-            </span>
+                    <span>
+                        Admin
+                    </span>
 
-        </nav>
+                </nav>
 
 
 
 
 
-        <div class="container mt-4">
+                <div class="container mt-4">
 
 
-            <div class="card shadow">
+                    <div class="card shadow">
 
 
-                <div class="card-header bg-white">
+                        <div class="card-header bg-white">
 
-                    <h5>
-                        Update Employee Information
-                    </h5>
-
-                </div>
-
-
-
-                <div class="card-body">
-
-
-                    <form>
-
-
-                        <h6 class="text-primary mb-3">
-                            Personal Details
-                        </h6>
-
-
-                        <div class="row">
-
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
-                                    Full Name
-                                </label>
-
-
-                                <input 
-                                type="text"
-                                class="form-control"
-                                value="Rahul Sharma">
-
-
-                            </div>
-
-
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
-                                    Email
-                                </label>
-
-
-                                <input 
-                                type="email"
-                                class="form-control"
-                                value="rahul@gmail.com">
-
-
-                            </div>
-
+                            <h5>
+                                Update Employee Information
+                            </h5>
 
                         </div>
 
 
 
+                        <div class="card-body">
 
 
-                        <div class="row">
+                            <form action="{{route('employees.update', $employee->id)}}" method="POST">
+                                @csrf
+                                @method('PUT')
+
+                                <h6 class="text-primary mb-3">
+                                    Personal Details
+                                </h6>
 
 
-                            <div class="col-md-6 mb-3">
+                                <div class="row">
 
 
-                                <label class="form-label">
-                                    Phone
-                                </label>
+                                    <div class="col-md-6 mb-3">
 
 
-                                <input 
-                                type="text"
-                                class="form-control"
-                                value="9876543210">
+                                        <label class="form-label">
+                                            Full Name
+                                        </label>
 
 
-                            </div>
+                                        <input type="text" 
+                                        name="name"
+                                        class="form-control" value="{{$employee->name}}"
+                                            value="Rahul Sharma">
+
+
+                                    </div>
 
 
 
-                            <div class="col-md-6 mb-3">
+                                    <div class="col-md-6 mb-3">
 
 
-                                <label class="form-label">
-                                    Gender
-                                </label>
+                                        <label class="form-label">
+                                            Email
+                                        </label>
 
 
-                                <select class="form-select">
+                                        <input type="email" 
+                                        name="email"
+                                        class="form-control" value="{{$employee->email}}"
+                                            value="rahul@gmail.com">
 
 
-                                    <option selected>
-                                        Male
-                                    </option>
+                                    </div>
 
 
-                                    <option>
-                                        Female
-                                    </option>
+                                </div>
+
+
+
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6 mb-3">
+
+
+                                        <label class="form-label">
+                                            Phone
+                                        </label>
+
+
+                                        <input type="text"
+                                        name="phone"
+                                        class="form-control" value="{{$employee->phone}}"
+                                            value="9876543210">
+
+
+                                    </div>
+
+
+
+                                    <div class="col-md-6 mb-3">
+
+
+                                        <label class="form-label">
+                                            Gender
+                                        </label>
+
+
+                                        <select name="gender" class="form-select">
+
+
+                                            <option  value="Male" {{$employee->gender == 'Male' ? 'selected' : '' }}>
+                                                Male
+                                            </option>
+
+
+                                            <option value="Female" {{$employee->gender == 'Female' ? 'selected' : '' }}>
+                                                Female
+                                            </option>
+
+
+                                        </select>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+
+                                <h6 class="text-primary mt-4 mb-3">
+                                    Job Details
+                                </h6>
+
+
+
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6 mb-3">
+
+
+                                        <label class="form-label">
+                                            Department
+                                        </label>
+
+
+                                        <select name="department" class="form-select">
+
+
+                                            <option value="IT" {{$employee->department == 'IT' ? 'selected' : '' }}>
+                                                IT
+                                            </option>
+
+
+                                            <option value="HR" {{$employee->department == 'HR' ? 'selected' : '' }}>
+                                                HR
+                                            </option>
+
+
+                                            <option value="Finance" {{$employee->department == 'Finance' ? 'selected' : '' }}>
+                                                Finance
+                                            </option>
+
+
+                                        </select>
+
+
+                                    </div>
+
+
+
+
+                                    <div class="col-md-6 mb-3">
+
+
+                                        <label class="form-label">
+                                            Designation
+                                        </label>
+
+
+                                        <input type="text" 
+                                        name="position"
+                                        value="{{$employee->position}}" class="form-control"
+                                            value="Software Developer">
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6 mb-3">
+
+
+                                        <label class="form-label">
+                                            Joining Date
+                                        </label>
+
+
+                                        <input type="date" 
+                                        name="joining_date"
+                                        value="{{$employee->
+    joining_date}}" class="form-control" value="2025-01-15">
+
+
+                                    </div>
+
+
+
+
+                                    <div class="col-md-6 mb-3">
+
+
+                                        <label class="form-label">
+                                            Status
+                                        </label>
+
+
+                                        <select name="status" class="form-select">
+
+
+                                            <option value="1" {{$employee->status == 1 ? 'selected' : ''}}>
+                                                Active
+                                            </option>
+
+
+                                            <option value="0" {{$employee->status == 0 ? 'selected' : ''}}>
+                                                Inactive
+                                            </option>
+
+                                        </select>
+
+
+                                    </div>
+
+
+                                </div>
 
 
                                 </select>
 
 
-                            </div>
-
-
                         </div>
 
 
+                    </div>
 
 
 
 
 
-                        <h6 class="text-primary mt-4 mb-3">
-                            Job Details
-                        </h6>
 
 
+                    <h6 class="text-primary mt-4 mb-3">
+                        Address
+                    </h6>
 
 
 
-                        <div class="row">
-
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
-                                    Department
-                                </label>
-
-
-                                <select class="form-select">
-
-
-                                    <option selected>
-                                        IT
-                                    </option>
-
-
-                                    <option>
-                                        HR
-                                    </option>
-
-
-                                    <option>
-                                        Finance
-                                    </option>
-
-
-                                </select>
-
-
-                            </div>
-
-
-
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
-                                    Designation
-                                </label>
-
-
-                                <input 
-                                type="text"
-                                class="form-control"
-                                value="Software Developer">
-
-
-                            </div>
-
-
-                        </div>
-
-
-
-
-
-
-
-                        <div class="row">
-
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
-                                    Joining Date
-                                </label>
-
-
-                                <input 
-                                type="date"
-                                class="form-control"
-                                value="2025-01-15">
-
-
-                            </div>
-
-
-
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
-                                    Status
-                                </label>
-
-
-                                <select class="form-select">
-
-
-                                    <option selected>
-                                        Active
-                                    </option>
-
-
-                                    <option>
-                                        Inactive
-                                    </option>
-
-
-                                </select>
-
-
-                            </div>
-
-
-                        </div>
-
-
-
-
-
-
-
-                        <h6 class="text-primary mt-4 mb-3">
-                            Address
-                        </h6>
-
-
-
-                        <textarea 
-                        class="form-control mb-4"
+                    <textarea name="address" class="form-control mb-4" value="{{$employee->address}}"
                         rows="3">Dehradun, Uttarakhand</textarea>
 
 
@@ -390,20 +396,19 @@
 
 
 
-                        <div class="text-end">
+                    <div class="text-end">
 
 
-                            <a href="/employees" class="btn btn-secondary">
-                                Cancel
-                            </a>
+                        <a href="/employees" class="btn btn-secondary">
+                            Cancel
+                        </a>
 
 
-                            <button class="btn btn-success">
-                                Update Employee
-                            </button>
+                        <button type="submit" class="btn btn-success">
+                            Update Employee
+                        </button>
 
-
-                        </div>
+                    </div>
 
 
 
@@ -425,10 +430,10 @@
     </div>
 
 
-</div>
+    </div>
 
 
-</div>
+    </div>
 
 
 </body>
