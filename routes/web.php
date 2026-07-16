@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\departmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 
@@ -27,6 +28,15 @@ Route::put("/employees/{id}",[EmployeeController::class,"update"])->name("employ
 //delete employee route
 Route::delete("/employees/{id}",[EmployeeController::class,"destroy"])->name("employees.destroy");
 
-Route::get("/departments",function(){
-   return view("/departments/index");
-});
+
+
+//Departments routes
+Route::get("/departments",[departmentController::class,"index"])->name("departments.index");
+
+
+//create department route
+ Route::get("/departments/create",[departmentController::class,"create"] )->name("departments.create");
+
+
+ //store department route
+ Route::post("/departments",[departmentController::class,"store"] )->name("departments.store");
