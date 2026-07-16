@@ -41,7 +41,8 @@ Route::get("/departments",[departmentController::class,"index"])->name("departme
  //store department route
  Route::post("/departments",[departmentController::class,"store"] )->name("departments.store");
 
-
+//edit department route
+Route::get("/departments/{id}/edit",[departmentController::class,"edit"])->name("departments.edit");    
 
  //update department route
  Route::put("/departments/{id}",[departmentController::class,"update"])->name("departments.update");
