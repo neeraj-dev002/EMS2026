@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+// employees routes
 
 Route::get("/employees",[EmployeeController::class,"index"])->name("employees.index");
 
@@ -18,6 +18,8 @@ Route::post("/employees",[EmployeeController::class,"store"])->name("employees.s
 
 Route::get("/employees/{id}",[EmployeeController::class,"show"])->name("employees.show");
 
+//delete employee route
+Route::delete("/employees/{id}",[EmployeeController::class,"destroy"])->name("employees.destroy");
 
 Route::get("/departments",function(){
    return view("/departments/index");
