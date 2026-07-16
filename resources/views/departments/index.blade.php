@@ -145,7 +145,7 @@
                     </h5>
 
 
-                    <a href="#" class="btn btn-primary">
+                    <a href="{{ route('departments.create') }}" class="btn btn-primary">
                         + Add Department
                     </a>
 
@@ -250,11 +250,16 @@
 </a>
 
 
+<form action="{{ route('departments.destroy',$department->id) }}" method="post">
+
+@csrf
+@method('DELETE ')
+
                                 <button class="btn btn-sm btn-danger">
                                     Delete
                                 </button>
 
-
+</form>
                             </td>
 
 
