@@ -252,9 +252,9 @@
                                     View
                                 </button>
 
-                                <button class="btn btn-sm btn-warning">
+                                <a href="{{route('employees.edit',$employee->id)}}" class="btn btn-sm btn-warning">
                                     Edit
-                                </button>
+</a>
 <form action="{{route('employees.destroy',$employee->id)}}" method="POST">
  @csrf
  @method('DELETE')   
