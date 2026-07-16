@@ -16,7 +16,13 @@ Route::get("/employees/create",[EmployeeController::class,"create"])->name("empl
 
 Route::post("/employees",[EmployeeController::class,"store"])->name("employees.store");
 
-Route::get("/employees/{id}",[EmployeeController::class,"show"])->name("employees.show");
+
+//employee show route      
+Route::get("/employees/{id}/edit",[EmployeeController::class,"edit"])->name("employees.edit");
+
+//update employee route
+Route::put("/employees/{id}",[EmployeeController::class,"update"])->name("employees.update");
+
 
 //delete employee route
 Route::delete("/employees/{id}",[EmployeeController::class,"destroy"])->name("employees.destroy");
