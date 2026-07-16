@@ -141,9 +141,9 @@
                 <div class="card-body">
 
 
-                    <form action="{{route('employees.store')}}" method="POST">
+                    <form action="{{route('departments.store')}}" method="POST">
 
-
+@csrf   
                         <!-- Department Details -->
 
 
