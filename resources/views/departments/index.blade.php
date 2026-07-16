@@ -245,9 +245,9 @@
                                 </button>
 
 
-                                <button class="btn btn-sm btn-warning">
+                                <a href="{{ route('departments.edit',$department->id) }}" class="btn btn-sm btn-warning">
                                     Edit
-                                </button>
+</a>
 
 
                                 <button class="btn btn-sm btn-danger">
