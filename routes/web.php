@@ -46,3 +46,7 @@ Route::get("/departments/{id}/edit",[departmentController::class,"edit"])->name(
 
  //update department route
  Route::put("/departments/{id}",[departmentController::class,"update"])->name("departments.update");
+
+
+ //delete department route
+ Route::delete("/departments/{id}",[departmentController::class,"destroy"])->name("departments.destroy");
