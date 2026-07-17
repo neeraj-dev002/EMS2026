@@ -12,10 +12,6 @@ use App\Http\Controllers\EmployeeController;
 Route::get("/login",[AuthenticatedSessionController::class,"create"])->middleware("guest")->name("login");
 
 
-
-
-
-
 Route::get('/', function () {
     return view('index');
 });
@@ -61,3 +57,6 @@ Route::get("/departments/{id}/edit",[departmentController::class,"edit"])->name(
 
  //delete department route
  Route::delete("/departments/{id}",[departmentController::class,"destroy"])->name("departments.destroy");
+
+
+ require __DIR__.'/auth.php';
