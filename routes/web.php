@@ -1,8 +1,19 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\departmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+
+
+
+
+//auth
+Route::get("/login",[AuthenticatedSessionController::class,"create"])->middleware("guest")->name("login");
+
+
+
+
 
 
 Route::get('/', function () {
