@@ -7,15 +7,10 @@ use App\Http\Controllers\EmployeeController;
 
 
 
-
-//auth
-Route::get("/login",[AuthenticatedSessionController::class,"create"])->middleware("guest")->name("login");
-
-
-Route::get('/', function () {
-    return view('index');
-});
-
+Route::get('/dashboard', function () {
+    return view('dashboard');    
+})->middleware('auth')->name('dashboard');
+ 
 // employees routes
 
 Route::get("/employees",[EmployeeController::class,"index"])->name("employees.index");
