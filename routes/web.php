@@ -7,10 +7,20 @@ use App\Http\Controllers\EmployeeController;
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');    
-})->middleware('auth')->name('dashboard');
- 
+Route::get("/",function(){
+    if(auth()->check()){
+        return redirect()->route("dashboard");
+    }
+    else{
+        return redirect()->route("login");
+    }
+});
+
+
+
+Route::middleware("auth")->group(function(){
+
+
 // employees routes
 
 Route::get("/employees",[EmployeeController::class,"index"])->name("employees.index");
@@ -53,5 +63,12 @@ Route::get("/departments/{id}/edit",[departmentController::class,"edit"])->name(
  //delete department route
  Route::delete("/departments/{id}",[departmentController::class,"destroy"])->name("departments.destroy");
 
+
+}); 
+
+
+
+ 
+ 
 
  require __DIR__.'/auth.php';
