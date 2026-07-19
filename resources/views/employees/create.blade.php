@@ -251,13 +251,20 @@
                                 </label>
 
 
-                                <select name="department" class="form-select">
+                                <select name="department_id" class="form-select">
+<option value="">
+                                    Select Department
+                                </option>
 
-                                    <option>
-                                        Select Department
-                                    </option>
+                                @foreach ($departments as $department)
 
-                                    <option value="IT">
+                                
+                                <option value="{{ $department->id }}">
+                            {{ $department->dep_name }}       
+                            </option>
+                                @endforeach
+
+                                    <!-- <option value="IT">
                                         IT
                                     </option>
 
@@ -267,7 +274,7 @@
 
                                     <option value="Finance">
                                         Finance
-                                    </option>
+                                    </option> -->
 
 
                                 </select>
