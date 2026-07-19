@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 
@@ -21,7 +22,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view("employees.create");
+        $departments = Department::all();
+
+        return view("employees.create",compact('departments'));
     }
 
     /**
@@ -30,7 +33,9 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //store employee data in the database
+       
         Employee::create($request->all());
+
         return redirect()->route("employees.index")->with("success","Employee created successfully");   
     }
 
