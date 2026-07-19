@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employees_tables', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
          $table->id();
             $table->string("name");
             $table->string("email")->unique();
             $table->string("phone")->unique();
             $table->string("gender");
-            $table->string("department");
-            $table->string("position");
+             $table->string("position");
             $table->date("joining_date");
             $table->boolean("status")->default(true);
             $table->string("address"); 
