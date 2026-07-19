@@ -12,4 +12,8 @@ class Department extends Model
         'dep_head',
         'total_employees'
     ];
+
+    public function employees(){
+        return $this->hashMany(Employee::class);
+    }
 }
