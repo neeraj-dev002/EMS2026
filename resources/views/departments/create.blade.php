@@ -8,111 +8,40 @@
 
     <title>Add Department</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <style>
-
-        body {
-            background: #f5f6fa;
-        }
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-        .card {
-            border-radius: 15px;
-            border: none;
-        }
-
-    </style>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
 
-<body>
+<body class="bg-gray-100">
 
 
-<div class="container-fluid">
+<div class="flex min-h-screen">
 
 
-<div class="row">
-
-
-    <!-- Sidebar -->
-
-
-    <div class="col-md-2 sidebar p-0">
-
-
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
-
-
-        <a href="/dashboard">
-            Dashboard
-        </a>
-
-
-        <a href="/employees">
-            Employees
-        </a>
-
-
-        <a href="/departments">
-            Departments
-        </a>
-
-
-        <a href="#">
-            Attendance
-        </a>
-
-
-        <a href="#">
-            Leaves
-        </a>
-
-
-        <a href="#">
-            Payroll
-        </a>
-
-
-    </div>
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
 
 
 
-    <!-- Content -->
+    {{-- Main Content --}}
+
+    <div class="flex-1">
 
 
-    <div class="col-md-10">
+
+        {{-- Navbar --}}
+
+        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
 
 
-        <nav class="navbar bg-white shadow-sm px-4">
+            <h1 class="text-2xl font-bold text-gray-800">
+                Add Department
+            </h1>
 
 
-            <h4>
-                Add Employee
-            </h4>
-
-
-            <span>
+            <span class="font-semibold text-gray-700">
                 Admin
             </span>
 
@@ -122,60 +51,94 @@
 
 
 
-        <div class="container mt-4">
 
 
-            <div class="card shadow">
+
+        <div class="p-6">
 
 
-                <div class="card-header bg-white">
+            <div class="bg-white rounded-xl shadow">
 
-                    <h5>
+
+
+                {{-- Header --}}
+
+                <div class="border-b px-6 py-4">
+
+                    <h2 class="text-xl font-semibold">
                         Department Information
-                    </h5>
+                    </h2>
 
                 </div>
 
 
 
-                <div class="card-body">
+
+
+
+                <div class="p-6">
 
 
                     <form action="{{route('departments.store')}}" method="POST">
 
-@csrf   
-                        <!-- Department Details -->
+                        @csrf
 
 
-                        <h6 class="text-primary mb-3">
+
+
+                        {{-- Department Details --}}
+
+
+                        <h3 class="text-blue-600 font-semibold mb-4">
                             Department Details
-                        </h6>
+                        </h3>
 
 
-                        <div class="row">
 
 
-                            <div class="col-md-6 mb-3">
 
-                                <label class="form-label">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+
+                            <div>
+
+                                <label class="block font-medium mb-2">
                                     Department Name
                                 </label>
 
-                                <input type="text" name="dep_name" class="form-control" placeholder="Enter department name">
+
+                                <input
+                                    type="text"
+                                    name="dep_name"
+                                    placeholder="Enter department name"
+                                    class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
 
                             </div>
 
 
 
-                            <div class="col-md-6 mb-3">
 
-                                <label class="form-label">
+
+
+
+                            <div>
+
+                                <label class="block font-medium mb-2">
                                     Department Head
                                 </label>
 
-                                <input type="text" name="dep_head" class="form-control" placeholder="Enter department head">
+
+                                <input
+                                    type="text"
+                                    name="dep_head"
+                                    placeholder="Enter department head"
+                                    class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
 
                             </div>
+
 
 
                         </div>
@@ -183,51 +146,64 @@
 
 
 
-                        <div class="row">
 
 
-                            <div class="col-md-6 mb-3">
-
-                                <label class="form-label">
-                                   Total Employees
-                                </label>
-
-                                <input type="text" name="total_employees" class="form-control" placeholder="Enter total employees">
-
-                            </div>
 
 
- 
+                        <div class="mt-5 md:w-1/2">
+
+
+                            <label class="block font-medium mb-2">
+                                Total Employees
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="total_employees"
+                                placeholder="Enter total employees"
+                                class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+
 
                         </div>
 
 
-  
-
-<div class="text-end">
 
 
-                            <a href="/departments" class="btn btn-secondary">
+
+
+
+
+
+                        {{-- Buttons --}}
+
+
+                        <div class="flex justify-end gap-3 mt-6">
+
+
+                            <a href="/departments"
+                               class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600">
+
                                 Cancel
+
                             </a>
 
 
-                            <button type="submit" class="btn btn-primary">
+
+
+
+                            <button
+                                type="submit"
+                                class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+
                                 Save Department
+
                             </button>
 
 
                         </div>
 
 
- 
-                        </div>
-
-
-
-
-
-                        
 
 
 
@@ -238,20 +214,23 @@
                 </div>
 
 
+
             </div>
+
 
 
         </div>
 
 
 
+
+
     </div>
 
 
-</div>
-
 
 </div>
+
 
 
 </body>
