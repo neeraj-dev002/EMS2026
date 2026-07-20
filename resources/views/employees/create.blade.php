@@ -8,204 +8,151 @@
 
     <title>Add Employee</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <style>
-
-        body {
-            background: #f5f6fa;
-        }
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-        .card {
-            border-radius: 15px;
-            border: none;
-        }
-
-    </style>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
 
-<body>
+<body class="bg-gray-100">
 
 
-<div class="container-fluid">
+<div class="flex min-h-screen">
 
 
-<div class="row">
-
-
-    <!-- Sidebar -->
-
-
-    <div class="col-md-2 sidebar p-0">
-
-
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
-
-
-        <a href="/dashboard">
-            Dashboard
-        </a>
-
-
-        <a href="/employees">
-            Employees
-        </a>
-
-
-        <a href="/departments">
-            Departments
-        </a>
-
-
-        <a href="#">
-            Attendance
-        </a>
-
-
-        <a href="#">
-            Leaves
-        </a>
-
-
-        <a href="#">
-            Payroll
-        </a>
-
-
-    </div>
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
 
 
+    {{-- Content --}}
 
-    <!-- Content -->
-
-
-    <div class="col-md-10">
+    <div class="flex-1">
 
 
-        <nav class="navbar bg-white shadow-sm px-4">
+        {{-- Navbar --}}
 
+        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
 
-            <h4>
+            <h1 class="text-2xl font-bold text-gray-800">
                 Add Employee
-            </h4>
+            </h1>
 
 
-            <span>
+            <span class="font-semibold text-gray-700">
                 Admin
             </span>
-
 
         </nav>
 
 
 
 
-        <div class="container mt-4">
+
+        <div class="p-6">
 
 
-            <div class="card shadow">
+            <div class="bg-white rounded-xl shadow">
 
 
-                <div class="card-header bg-white">
+                {{-- Card Header --}}
 
-                    <h5>
+                <div class="border-b px-6 py-4">
+
+                    <h2 class="text-xl font-semibold">
                         Employee Information
-                    </h5>
+                    </h2>
 
                 </div>
 
 
 
-                <div class="card-body">
+
+
+                <div class="p-6">
 
 
                     <form action="{{route('employees.store')}}" method="POST">
 
+                        @csrf
 
-                        <!-- Personal Details -->
 
 
-                        <h6 class="text-primary mb-3">
+                        {{-- Personal Details --}}
+
+                        <h3 class="text-blue-600 font-semibold mb-4">
                             Personal Details
-                        </h6>
+                        </h3>
 
 
-                        <div class="row">
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
 
-                            <div class="col-md-6 mb-3">
 
-                                <label class="form-label">
+                            <div>
+
+                                <label class="block mb-2 font-medium">
                                     Full Name
                                 </label>
 
-                                <input type="text" name="name" class="form-control" placeholder="Enter name">
+
+                                <input 
+                                    type="text"
+                                    name="name"
+                                    placeholder="Enter name"
+                                    class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
 
                             </div>
 
 
 
-                            <div class="col-md-6 mb-3">
 
-                                <label class="form-label">
+                            <div>
+
+                                <label class="block mb-2 font-medium">
                                     Email
                                 </label>
 
-                                <input type="email" name="email" class="form-control" placeholder="Enter email">
+
+                                <input 
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter email"
+                                    class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
 
                             </div>
 
 
-                        </div>
 
+                            <div>
 
-
-
-                        <div class="row">
-
-
-                            <div class="col-md-6 mb-3">
-
-                                <label class="form-label">
+                                <label class="block mb-2 font-medium">
                                     Phone Number
                                 </label>
 
-                                <input type="text" name="phone" class="form-control" placeholder="Enter phone">
+
+                                <input 
+                                    type="text"
+                                    name="phone"
+                                    placeholder="Enter phone"
+                                    class="w-full border rounded-lg px-4 py-2">
 
                             </div>
 
 
 
-                            <div class="col-md-6 mb-3">
 
-                                <label class="form-label">
+
+                            <div>
+
+                                <label class="block mb-2 font-medium">
                                     Gender
                                 </label>
 
 
-                                <select name="gender" class="form-select">
+                                <select 
+                                    name="gender"
+                                    class="w-full border rounded-lg px-4 py-2">
 
                                     <option>
                                         Select Gender
@@ -215,7 +162,7 @@
                                         Male
                                     </option>
 
-                                    <option>
+                                    <option value="Female">
                                         Female
                                     </option>
 
@@ -231,50 +178,46 @@
 
 
 
-                        <!-- Job Details -->
 
 
-                        <h6 class="text-primary mt-4 mb-3">
+                        {{-- Job Details --}}
+
+
+                        <h3 class="text-blue-600 font-semibold mt-8 mb-4">
                             Job Details
-                        </h6>
+                        </h3>
 
 
 
-                        <div class="row">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
 
-                            <div class="col-md-6 mb-3">
 
+                            <div>
 
-                                <label class="form-label">
+                                <label class="block mb-2 font-medium">
                                     Department
                                 </label>
 
 
-                                <select name="department_id" class="form-select">
-<option value="">
-                                    Select Department
-                                </option>
+                                <select 
+                                    name="department_id"
+                                    class="w-full border rounded-lg px-4 py-2">
 
-                                @foreach ($departments as $department)
 
-                                
-                                <option value="{{ $department->id }}">
-                            {{ $department->dep_name }}       
-                            </option>
-                                @endforeach
-
-                                    <!-- <option value="IT">
-                                        IT
+                                    <option value="">
+                                        Select Department
                                     </option>
 
-                                    <option value="HR">
-                                        HR
+
+
+                                    @foreach ($departments as $department)
+
+                                    <option value="{{ $department->id }}">
+                                        {{ $department->dep_name }}
                                     </option>
 
-                                    <option value="Finance">
-                                        Finance
-                                    </option> -->
+                                    @endforeach
 
 
                                 </select>
@@ -285,45 +228,41 @@
 
 
 
-                            <div class="col-md-6 mb-3">
 
 
-                                <label class="form-label">
+                            <div>
+
+                                <label class="block mb-2 font-medium">
                                     Designation
                                 </label>
 
 
                                 <input 
-                                type="text" 
-                                name="position"
-                                class="form-control"
-                                placeholder="Example: Developer">
+                                    type="text"
+                                    name="position"
+                                    placeholder="Example: Developer"
+                                    class="w-full border rounded-lg px-4 py-2">
 
 
                             </div>
 
 
-                        </div>
 
 
 
 
 
-                        <div class="row">
+                            <div>
 
-
-                            <div class="col-md-6 mb-3">
-
-
-                                <label class="form-label">
+                                <label class="block mb-2 font-medium">
                                     Joining Date
                                 </label>
 
 
                                 <input 
-                                type="date"
-                                name="joining_date"
-                                class="form-control">
+                                    type="date"
+                                    name="joining_date"
+                                    class="w-full border rounded-lg px-4 py-2">
 
 
                             </div>
@@ -331,15 +270,19 @@
 
 
 
-                            <div class="col-md-6 mb-3">
 
 
-                                <label class="form-label">
+
+                            <div>
+
+                                <label class="block mb-2 font-medium">
                                     Employee Status
                                 </label>
 
 
-                                <select name="status" class="form-select">
+                                <select 
+                                    name="status"
+                                    class="w-full border rounded-lg px-4 py-2">
 
 
                                     <option value="1">
@@ -358,47 +301,60 @@
                             </div>
 
 
+
                         </div>
 
 
 
 
 
-                        <!-- Address -->
 
 
-                        <h6 class="text-primary mt-4 mb-3">
+                        {{-- Address --}}
+
+
+                        <h3 class="text-blue-600 font-semibold mt-8 mb-4">
                             Address
-                        </h6>
+                        </h3>
 
 
 
-                        <div class="mb-3">
-
-
-                            <textarea 
-                            class="form-control"
+                        <textarea
                             name="address"
-                            rows="3"
-                            placeholder="Enter address"></textarea>
-
-
-                        </div>
-
-
+                            rows="4"
+                            placeholder="Enter address"
+                            class="w-full border rounded-lg px-4 py-3">
+                        </textarea>
 
 
 
-                        <div class="text-end">
 
 
-                            <a href="/employees" class="btn btn-secondary">
+
+
+
+                        {{-- Buttons --}}
+
+
+                        <div class="flex justify-end gap-3 mt-6">
+
+
+                            <a href="/employees"
+                               class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600">
+
                                 Cancel
+
                             </a>
 
 
-                            <button type="submit" class="btn btn-primary">
+
+
+                            <button 
+                                type="submit"
+                                class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+
                                 Save Employee
+
                             </button>
 
 
@@ -422,9 +378,6 @@
 
 
     </div>
-
-
-</div>
 
 
 </div>
