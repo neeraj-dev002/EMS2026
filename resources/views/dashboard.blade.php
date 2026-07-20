@@ -1,345 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Employee Dashboard</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f5f6fa;
-        }
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-        .sidebar a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-        .card-box {
-            border-radius: 15px;
-            border: none;
-        }
-    </style>
-
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-gray-100">
 
+<div class="flex min-h-screen">
 
-<div class="container-fluid">
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
-<div class="row">
+    {{-- Main Content --}}
+    <div class="flex-1">
 
-
-    <!-- Sidebar -->
-
-    <div class="col-md-2 sidebar p-0">
-
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
-
-
-        <a href="#">
-            Dashboard
-        </a>
-
-        <a href="/employees">
-            Employees
-        </a>
-
-        <a href="#">
-            Departments
-        </a>
-
-        <a href="#">
-            Attendance
-        </a>
-
-        <a href="#">
-            Leaves
-        </a>
-
-        <a href="#">
-            Payroll
-        </a>
-
-        <a href="#">
-            Reports
-        </a>
-
-        <a href="#">
-            Settings
-        </a>
-
-
-    </div>
-
-
-
-    <!-- Main Content -->
-
-    <div class="col-md-10">
-
-
-        <!-- Navbar -->
-
-        <nav class="navbar bg-white shadow-sm px-4">
-
-            <h4>
+        {{-- Navbar --}}
+        <nav class="bg-white shadow flex items-center justify-between px-6 py-4">
+            <h1 class="text-2xl font-bold text-gray-800">
                 Dashboard
-            </h4>
+            </h1>
 
-
-            <div>
-                <strong>
-                    Admin
-                </strong>
+            <div class="font-semibold text-gray-700">
+                Admin
             </div>
-
         </nav>
 
+        <div class="p-6">
 
+            {{-- Cards --}}
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
 
-        <div class="container-fluid mt-4">
+                <div class="bg-white rounded-xl shadow p-5">
+                    <h6 class="text-gray-500 text-sm">
+                        Total Employees
+                    </h6>
 
-
-            <!-- Cards -->
-
-            <div class="row g-4">
-
-
-                <div class="col-md-3">
-
-                    <div class="card card-box shadow p-3">
-
-                        <h6 class="text-muted">
-                            Total Employees
-                        </h6>
-
-                        <h2>
-                            250
-                        </h2>
-
-                    </div>
-
+                    <h2 class="text-3xl font-bold mt-2">
+                        250
+                    </h2>
                 </div>
 
+                <div class="bg-white rounded-xl shadow p-5">
+                    <h6 class="text-gray-500 text-sm">
+                        Departments
+                    </h6>
 
-
-                <div class="col-md-3">
-
-                    <div class="card card-box shadow p-3">
-
-                        <h6 class="text-muted">
-                            Departments
-                        </h6>
-
-                        <h2>
-                            12
-                        </h2>
-
-                    </div>
-
+                    <h2 class="text-3xl font-bold mt-2">
+                        12
+                    </h2>
                 </div>
 
+                <div class="bg-white rounded-xl shadow p-5">
+                    <h6 class="text-gray-500 text-sm">
+                        Present Today
+                    </h6>
 
-
-                <div class="col-md-3">
-
-                    <div class="card card-box shadow p-3">
-
-                        <h6 class="text-muted">
-                            Present Today
-                        </h6>
-
-                        <h2>
-                            220
-                        </h2>
-
-                    </div>
-
+                    <h2 class="text-3xl font-bold mt-2">
+                        220
+                    </h2>
                 </div>
 
+                <div class="bg-white rounded-xl shadow p-5">
+                    <h6 class="text-gray-500 text-sm">
+                        Pending Leaves
+                    </h6>
 
-
-                <div class="col-md-3">
-
-                    <div class="card card-box shadow p-3">
-
-                        <h6 class="text-muted">
-                            Pending Leaves
-                        </h6>
-
-                        <h2>
-                            15
-                        </h2>
-
-                    </div>
-
+                    <h2 class="text-3xl font-bold mt-2">
+                        15
+                    </h2>
                 </div>
-
 
             </div>
 
+            {{-- Employee Table --}}
+            <div class="bg-white rounded-xl shadow mt-8 overflow-hidden">
 
-
-
-            <!-- Employee Table -->
-
-
-            <div class="card shadow mt-5">
-
-                <div class="card-header bg-white">
-
-                    <h5>
+                <div class="border-b px-6 py-4">
+                    <h2 class="text-lg font-semibold">
                         Recent Employees
-                    </h5>
-
+                    </h2>
                 </div>
 
+                <div class="overflow-x-auto">
 
-                <div class="card-body">
+                    <table class="min-w-full">
 
-
-                    <table class="table table-hover">
-
-
-                        <thead>
+                        <thead class="bg-gray-100">
 
                         <tr>
-
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Department</th>
-                            <th>Status</th>
-
+                            <th class="text-left px-6 py-3">ID</th>
+                            <th class="text-left px-6 py-3">Name</th>
+                            <th class="text-left px-6 py-3">Department</th>
+                            <th class="text-left px-6 py-3">Status</th>
                         </tr>
 
                         </thead>
 
-
                         <tbody>
 
- 
-                        <tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="px-6 py-4">EMP001</td>
+                            <td class="px-6 py-4">Rahul Sharma</td>
+                            <td class="px-6 py-4">IT</td>
 
-                            <td>EMP001</td>
-                            <td>Rahul Sharma</td>
-                            <td>IT</td>
-
-                            <td>
-                                <span class="badge bg-success">
+                            <td class="px-6 py-4">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
                                     Active
                                 </span>
                             </td>
-
                         </tr>
 
- 
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="px-6 py-4">EMP002</td>
+                            <td class="px-6 py-4">Priya Singh</td>
+                            <td class="px-6 py-4">HR</td>
 
-                        <tr>
-
-                            <td>EMP002</td>
-                            <td>Priya Singh</td>
-                            <td>HR</td>
-
-                            <td>
-                                <span class="badge bg-success">
+                            <td class="px-6 py-4">
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
                                     Active
                                 </span>
                             </td>
-
                         </tr>
 
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4">EMP003</td>
+                            <td class="px-6 py-4">Amit Kumar</td>
+                            <td class="px-6 py-4">Finance</td>
 
-                        <tr>
-
-                            <td>EMP003</td>
-                            <td>Amit Kumar</td>
-                            <td>Finance</td>
-
-                            <td>
-                                <span class="badge bg-warning">
+                            <td class="px-6 py-4">
+                                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
                                     Leave
                                 </span>
                             </td>
-
                         </tr>
-
 
                         </tbody>
 
-
                     </table>
 
-
                 </div>
 
             </div>
 
+            {{-- Recent Activity --}}
+            <div class="bg-white rounded-xl shadow mt-8 mb-6">
 
-
-            <!-- Activity -->
-
-            <div class="card shadow mt-4 mb-5">
-
-                <div class="card-header bg-white">
-
-                    <h5>
+                <div class="border-b px-6 py-4">
+                    <h2 class="text-lg font-semibold">
                         Recent Activities
-                    </h5>
-
+                    </h2>
                 </div>
 
+                <div class="p-6 space-y-3 text-gray-700">
 
-                <div class="card-body">
+                    <p>✔ New employee Rahul Sharma added</p>
 
-                    <p>
-                        ✔ New employee Rahul Sharma added
-                    </p>
+                    <p>✔ Salary generated for March</p>
 
-                    <p>
-                        ✔ Salary generated for March
-                    </p>
-
-                    <p>
-                        ✔ Leave request approved
-                    </p>
+                    <p>✔ Leave request approved</p>
 
                 </div>
-
 
             </div>
-
-
 
         </div>
 
-
     </div>
 
-
 </div>
-
-</div>
-
 
 </body>
-
 </html>
