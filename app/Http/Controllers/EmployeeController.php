@@ -46,7 +46,8 @@ class EmployeeController extends Controller
     public function show(string $id)
     {
         //employee show from the database
-        $employee = Employee::find($id);
+        $employee = Employee::findorFail($id);
+       
         return view("employees.show",compact("employee"));
     }
 
