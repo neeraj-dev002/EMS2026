@@ -8,373 +8,235 @@
 
     <title>Edit Employee</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <style>
-        body {
-            background: #f5f6fa;
-        }
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-        .card {
-            border-radius: 15px;
-            border: none;
-        }
-    </style>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
 
-<body>
+<body class="bg-gray-100">
 
 
-    <div class="container-fluid">
+<div class="flex min-h-screen">
 
 
-        <div class="row">
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
 
-            <!-- Sidebar -->
 
+    {{-- Main Content --}}
 
-            <div class="col-md-2 sidebar p-0">
+    <div class="flex-1">
 
 
-                <h3 class="text-white text-center py-4">
-                    EMS
-                </h3>
+        {{-- Navbar --}}
 
+        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
 
-                <a href="/dashboard">
-                    Dashboard
-                </a>
+            <h1 class="text-2xl font-bold text-gray-800">
+                Edit Employee
+            </h1>
 
 
-                <a href="/employees">
-                    Employees
-                </a>
+            <span class="font-semibold text-gray-700">
+                Admin
+            </span>
 
+        </nav>
 
-                <a href="/departments">
-                    Departments
-                </a>
 
 
-                <a href="#">
-                    Attendance
-                </a>
 
 
-                <a href="#">
-                    Leaves
-                </a>
+        <div class="p-6">
 
 
-                <a href="#">
-                    Payroll
-                </a>
+            <div class="bg-white rounded-xl shadow">
 
 
-            </div>
+                {{-- Header --}}
 
+                <div class="border-b px-6 py-4">
 
+                    <h2 class="text-xl font-semibold">
+                        Update Employee Information
+                    </h2>
 
+                </div>
 
-            <!-- Main Content -->
 
 
-            <div class="col-md-10">
 
+                <div class="p-6">
 
-                <nav class="navbar bg-white shadow-sm px-4">
 
-                    <h4>
-                        Edit Employee
-                    </h4>
+                    <form action="{{route('employees.update', $employee->id)}}" method="POST">
 
+                        @csrf
+                        @method('PUT')
 
-                    <span>
-                        Admin
-                    </span>
 
-                </nav>
 
+                        {{-- Personal Details --}}
 
+                        <h3 class="text-blue-600 font-semibold mb-4">
+                            Personal Details
+                        </h3>
 
 
 
-                <div class="container mt-4">
 
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-                    <div class="card shadow">
 
+                            <div>
 
-                        <div class="card-header bg-white">
+                                <label class="block font-medium mb-2">
+                                    Full Name
+                                </label>
 
-                            <h5>
-                                Update Employee Information
-                            </h5>
 
-                        </div>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value="{{$employee->name}}"
+                                    class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
 
 
+                            </div>
 
-                        <div class="card-body">
 
 
-                            <form action="{{route('employees.update', $employee->id)}}" method="POST">
-                                @csrf
-                                @method('PUT')
 
-                                <h6 class="text-primary mb-3">
-                                    Personal Details
-                                </h6>
+                            <div>
 
+                                <label class="block font-medium mb-2">
+                                    Email
+                                </label>
 
-                                <div class="row">
 
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value="{{$employee->email}}"
+                                    class="w-full border rounded-lg px-4 py-2">
 
-                                    <div class="col-md-6 mb-3">
 
+                            </div>
 
-                                        <label class="form-label">
-                                            Full Name
-                                        </label>
 
 
-                                        <input type="text" 
-                                        name="name"
-                                        class="form-control" value="{{$employee->name}}"
-                                            value="Rahul Sharma">
 
 
-                                    </div>
+                            <div>
 
+                                <label class="block font-medium mb-2">
+                                    Phone
+                                </label>
 
 
-                                    <div class="col-md-6 mb-3">
+                                <input
+                                    type="text"
+                                    name="phone"
+                                    value="{{$employee->phone}}"
+                                    class="w-full border rounded-lg px-4 py-2">
 
 
-                                        <label class="form-label">
-                                            Email
-                                        </label>
+                            </div>
 
 
-                                        <input type="email" 
-                                        name="email"
-                                        class="form-control" value="{{$employee->email}}"
-                                            value="rahul@gmail.com">
 
 
-                                    </div>
 
+                            <div>
 
-                                </div>
+                                <label class="block font-medium mb-2">
+                                    Gender
+                                </label>
 
 
+                                <select
+                                    name="gender"
+                                    class="w-full border rounded-lg px-4 py-2">
 
 
+                                    <option value="Male"
+                                    {{$employee->gender == 'Male' ? 'selected' : ''}}>
+                                        Male
+                                    </option>
 
-                                <div class="row">
 
-
-                                    <div class="col-md-6 mb-3">
-
-
-                                        <label class="form-label">
-                                            Phone
-                                        </label>
-
-
-                                        <input type="text"
-                                        name="phone"
-                                        class="form-control" value="{{$employee->phone}}"
-                                            value="9876543210">
-
-
-                                    </div>
-
-
-
-                                    <div class="col-md-6 mb-3">
-
-
-                                        <label class="form-label">
-                                            Gender
-                                        </label>
-
-
-                                        <select name="gender" class="form-select">
-
-
-                                            <option  value="Male" {{$employee->gender == 'Male' ? 'selected' : '' }}>
-                                                Male
-                                            </option>
-
-
-                                            <option value="Female" {{$employee->gender == 'Female' ? 'selected' : '' }}>
-                                                Female
-                                            </option>
-
-
-                                        </select>
-
-
-                                    </div>
-
-
-                                </div>
-
-
-
-
-
-
-
-                                <h6 class="text-primary mt-4 mb-3">
-                                    Job Details
-                                </h6>
-
-
-
-
-
-                                <div class="row">
-
-
-                                    <div class="col-md-6 mb-3">
-
-
-                                        <label class="form-label">
-                                            Department
-                                        </label>
-
-
-                                        <select name="department" class="form-select">
-
-
-                                            <option value="IT" {{$employee->department == 'IT' ? 'selected' : '' }}>
-                                                IT
-                                            </option>
-
-
-                                            <option value="HR" {{$employee->department == 'HR' ? 'selected' : '' }}>
-                                                HR
-                                            </option>
-
-
-                                            <option value="Finance" {{$employee->department == 'Finance' ? 'selected' : '' }}>
-                                                Finance
-                                            </option>
-
-
-                                        </select>
-
-
-                                    </div>
-
-
-
-
-                                    <div class="col-md-6 mb-3">
-
-
-                                        <label class="form-label">
-                                            Designation
-                                        </label>
-
-
-                                        <input type="text" 
-                                        name="position"
-                                        value="{{$employee->position}}" class="form-control"
-                                            value="Software Developer">
-
-
-                                    </div>
-
-
-                                </div>
-
-
-
-
-
-
-
-                                <div class="row">
-
-
-                                    <div class="col-md-6 mb-3">
-
-
-                                        <label class="form-label">
-                                            Joining Date
-                                        </label>
-
-
-                                        <input type="date" 
-                                        name="joining_date"
-                                        value="{{$employee->
-    joining_date}}" class="form-control" value="2025-01-15">
-
-
-                                    </div>
-
-
-
-
-                                    <div class="col-md-6 mb-3">
-
-
-                                        <label class="form-label">
-                                            Status
-                                        </label>
-
-
-                                        <select name="status" class="form-select">
-
-
-                                            <option value="1" {{$employee->status == 1 ? 'selected' : ''}}>
-                                                Active
-                                            </option>
-
-
-                                            <option value="0" {{$employee->status == 0 ? 'selected' : ''}}>
-                                                Inactive
-                                            </option>
-
-                                        </select>
-
-
-                                    </div>
-
-
-                                </div>
+                                    <option value="Female"
+                                    {{$employee->gender == 'Female' ? 'selected' : ''}}>
+                                        Female
+                                    </option>
 
 
                                 </select>
 
 
+                            </div>
+
+
                         </div>
 
 
-                    </div>
+
+
+
+
+
+
+                        {{-- Job Details --}}
+
+
+                        <h3 class="text-blue-600 font-semibold mt-8 mb-4">
+                            Job Details
+                        </h3>
+
+
+
+
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+
+                            <div>
+
+
+                                <label class="block font-medium mb-2">
+                                    Department
+                                </label>
+
+
+                                <select
+                                    name="department"
+                                    class="w-full border rounded-lg px-4 py-2">
+
+
+                                    <option value="IT"
+                                    {{$employee->department == 'IT' ? 'selected' : ''}}>
+                                        IT
+                                    </option>
+
+
+                                    <option value="HR"
+                                    {{$employee->department == 'HR' ? 'selected' : ''}}>
+                                        HR
+                                    </option>
+
+
+                                    <option value="Finance"
+                                    {{$employee->department == 'Finance' ? 'selected' : ''}}>
+                                        Finance
+                                    </option>
+
+
+                                </select>
+
+
+                            </div>
 
 
 
@@ -382,38 +244,144 @@
 
 
 
-                    <h6 class="text-primary mt-4 mb-3">
-                        Address
-                    </h6>
+                            <div>
+
+                                <label class="block font-medium mb-2">
+                                    Designation
+                                </label>
+
+
+                                <input
+                                    type="text"
+                                    name="position"
+                                    value="{{$employee->position}}"
+                                    class="w-full border rounded-lg px-4 py-2">
+
+
+                            </div>
 
 
 
-                    <textarea name="address" class="form-control mb-4" value="{{$employee->address}}"
-                        rows="3">Dehradun, Uttarakhand</textarea>
+
+
+
+
+
+                            <div>
+
+                                <label class="block font-medium mb-2">
+                                    Joining Date
+                                </label>
+
+
+                                <input
+                                    type="date"
+                                    name="joining_date"
+                                    value="{{$employee->joining_date}}"
+                                    class="w-full border rounded-lg px-4 py-2">
+
+
+                            </div>
 
 
 
 
 
 
-                    <div class="text-end">
 
 
-                        <a href="/employees" class="btn btn-secondary">
-                            Cancel
-                        </a>
+                            <div>
+
+                                <label class="block font-medium mb-2">
+                                    Status
+                                </label>
 
 
-                        <button type="submit" class="btn btn-success">
-                            Update Employee
-                        </button>
+                                <select
+                                    name="status"
+                                    class="w-full border rounded-lg px-4 py-2">
 
-                    </div>
+
+                                    <option value="1"
+                                    {{$employee->status == 1 ? 'selected' : ''}}>
+                                        Active
+                                    </option>
+
+
+                                    <option value="0"
+                                    {{$employee->status == 0 ? 'selected' : ''}}>
+                                        Inactive
+                                    </option>
+
+
+                                </select>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+
+
+                        {{-- Address --}}
+
+
+                        <h3 class="text-blue-600 font-semibold mt-8 mb-4">
+                            Address
+                        </h3>
+
+
+
+                        <textarea
+                            name="address"
+                            rows="4"
+                            class="w-full border rounded-lg px-4 py-3">{{$employee->address}}</textarea>
+
+
+
+
+
+
+
+
+                        {{-- Buttons --}}
+
+
+                        <div class="flex justify-end gap-3 mt-6">
+
+
+                            <a href="/employees"
+                               class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-600">
+
+                                Cancel
+
+                            </a>
+
+
+
+
+
+                            <button
+                                type="submit"
+                                class="bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700">
+
+                                Update Employee
+
+                            </button>
+
+
+                        </div>
+
 
 
 
                     </form>
-
 
 
                 </div>
@@ -426,14 +394,10 @@
 
 
 
-
     </div>
 
 
-    </div>
-
-
-    </div>
+</div>
 
 
 </body>
