@@ -2,143 +2,46 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Employee Details</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <style>
-
-        body {
-            background: #f5f6fa;
-        }
-
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-
-        .sidebar a {
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-
-        .profile-card {
-            border-radius: 15px;
-            border: none;
-        }
-
-
-        .profile-img {
-
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-
-        }
-
-
-    </style>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
 
-<body>
+<body class="bg-gray-100">
 
 
-<div class="container-fluid">
-
-<div class="row">
+<div class="flex min-h-screen">
 
 
-    <!-- Sidebar -->
-
-    <div class="col-md-2 sidebar p-0">
-
-
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
-
-
-        <a href="/dashboard">
-            Dashboard
-        </a>
-
-
-        <a href="/employees">
-            Employees
-        </a>
-
-
-        <a href="#">
-            Departments
-        </a>
-
-
-        <a href="#">
-            Attendance
-        </a>
-
-
-        <a href="#">
-            Leaves
-        </a>
-
-
-        <a href="#">
-            Payroll
-        </a>
-
-
-        <a href="#">
-            Reports
-        </a>
-
-
-        <a href="#">
-            Settings
-        </a>
-
-
-    </div>
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
 
 
 
+    {{-- Main Content --}}
 
-    <!-- Main Content -->
-
-
-    <div class="col-md-10">
+    <div class="flex-1">
 
 
-        <!-- Navbar -->
+
+        {{-- Navbar --}}
+
+        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
 
 
-        <nav class="navbar bg-white shadow-sm px-4">
-
-
-            <h4>
+            <h1 class="text-2xl font-bold text-gray-800">
                 Employee Details
-            </h4>
+            </h1>
 
 
-            <strong>
+            <strong class="text-gray-700">
                 Admin
             </strong>
 
@@ -149,59 +52,79 @@
 
 
 
-        <div class="container mt-4">
+
+        <div class="p-6">
 
 
-            <div class="card shadow profile-card">
+
+            {{-- Profile Card --}}
+
+            <div class="bg-white shadow rounded-xl overflow-hidden">
 
 
-                <div class="card-header bg-primary text-white">
 
+                {{-- Header --}}
 
-                    <h5 class="mb-0">
+                <div class="bg-blue-600 text-white px-6 py-4">
+
+                    <h2 class="text-xl font-semibold">
                         Employee Profile
-                    </h5>
-
+                    </h2>
 
                 </div>
 
 
 
 
-                <div class="card-body">
 
 
-                    <div class="row">
+                <div class="p-6">
 
 
-                        <!-- Left Profile -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
 
-                        <div class="col-md-4 text-center">
+
+                        {{-- Profile Left --}}
 
 
-                            <img src="https://via.placeholder.com/150"
-                            class="profile-img mb-3">
+                        <div class="text-center">
 
 
-                            <h3>
+                            <img 
+                                src="https://via.placeholder.com/150"
+                                class="w-36 h-36 rounded-full mx-auto object-cover mb-4">
+
+
+
+
+
+                            <h2 class="text-2xl font-bold">
                                 {{ $employee->name }}
-                            </h3>
+                            </h2>
+
+
+
+
 
 
                             @if($employee->status == 1)
 
-                                <span class="badge bg-success">
+                                <span class="inline-block mt-3 bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm">
                                     Active
                                 </span>
 
+
                             @else
 
-                                <span class="badge bg-danger">
+
+                                <span class="inline-block mt-3 bg-red-100 text-red-700 px-4 py-1 rounded-full text-sm">
                                     Inactive
                                 </span>
 
+
                             @endif
+
 
 
                         </div>
@@ -210,22 +133,28 @@
 
 
 
-                        <!-- Right Details -->
 
 
-                        <div class="col-md-8">
+
+                        {{-- Details Right --}}
 
 
-                            <table class="table table-bordered">
+                        <div class="md:col-span-2 overflow-x-auto">
 
 
-                                <tr>
+                            <table class="min-w-full border border-gray-200">
 
-                                    <th>
+
+                                <tbody>
+
+
+                                <tr class="border-b">
+
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Employee ID
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         EMP{{ $employee->id }}
                                     </td>
 
@@ -233,13 +162,15 @@
 
 
 
-                                <tr>
 
-                                    <th>
+
+                                <tr class="border-b">
+
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Name
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         {{ $employee->name }}
                                     </td>
 
@@ -247,13 +178,16 @@
 
 
 
-                                <tr>
 
-                                    <th>
+
+
+                                <tr class="border-b">
+
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Email
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         {{ $employee->email }}
                                     </td>
 
@@ -262,13 +196,15 @@
 
 
 
-                                <tr>
 
-                                    <th>
+
+                                <tr class="border-b">
+
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Phone
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         {{ $employee->phone }}
                                     </td>
 
@@ -277,13 +213,15 @@
 
 
 
-                                <tr>
 
-                                    <th>
+
+                                <tr class="border-b">
+
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Gender
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         {{ $employee->gender }}
                                     </td>
 
@@ -292,13 +230,15 @@
 
 
 
-                                <tr>
 
-                                    <th>
+
+                                <tr class="border-b">
+
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Department
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         {{ $employee->department }}
                                     </td>
 
@@ -307,17 +247,23 @@
 
 
 
+
+
                                 <tr>
 
-                                    <th>
+                                    <th class="text-left px-5 py-3 bg-gray-50">
                                         Created Date
                                     </th>
 
-                                    <td>
+                                    <td class="px-5 py-3">
                                         {{ $employee->created_at->format('d M Y') }}
                                     </td>
 
                                 </tr>
+
+
+
+                                </tbody>
 
 
                             </table>
@@ -326,7 +272,9 @@
                         </div>
 
 
+
                     </div>
+
 
 
                 </div>
@@ -336,22 +284,29 @@
 
 
 
-            <a href="/employees" class="btn btn-secondary mt-3">
+
+
+
+            <a href="/employees"
+               class="inline-block mt-5 bg-gray-600 text-white px-5 py-2 rounded-lg hover:bg-gray-700">
+
                 Back
+
             </a>
+
 
 
 
         </div>
 
 
+
     </div>
 
 
-</div>
-
 
 </div>
+
 
 
 </body>
