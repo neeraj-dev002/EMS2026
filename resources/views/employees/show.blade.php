@@ -239,7 +239,7 @@
                                     </th>
 
                                     <td class="px-5 py-3">
-                                        {{ $employee->department }}
+                                        {{ $employee->department->dep_name }}
                                     </td>
 
                                 </tr>
