@@ -2,126 +2,47 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Departments</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <style>
-
-        body {
-            background: #f5f6fa;
-        }
-
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-
-        .card {
-            border-radius: 15px;
-            border: none;
-        }
-
-    </style>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
 
-<body>
+<body class="bg-gray-100">
 
 
-<div class="container-fluid">
+<div class="flex min-h-screen">
 
 
-<div class="row">
-
-
-    <!-- Sidebar -->
-
-    <div class="col-md-2 sidebar p-0">
-
-
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
-
-
-        <a href="/dashboard">
-            Dashboard
-        </a>
-
-
-        <a href="/employees">
-            Employees
-        </a>
-
-
-        <a href="/departments">
-            Departments
-        </a>
-
-
-        <a href="#">
-            Attendance
-        </a>
-
-
-        <a href="#">
-            Leaves
-        </a>
-
-
-        <a href="#">
-            Payroll
-        </a>
-
-
-        <a href="#">
-            Reports
-        </a>
-
-
-    </div>
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
 
 
-    <!-- Main Content -->
 
 
-    <div class="col-md-10">
+    {{-- Main Content --}}
+
+    <div class="flex-1">
 
 
-        <!-- Navbar -->
+
+        {{-- Navbar --}}
+
+        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
 
 
-        <nav class="navbar bg-white shadow-sm px-4">
-
-
-            <h4>
+            <h1 class="text-2xl font-bold text-gray-800">
                 Departments
-            </h4>
+            </h1>
 
 
-            <span>
+            <span class="font-semibold text-gray-700">
                 Admin
             </span>
 
@@ -130,24 +51,39 @@
 
 
 
-        <div class="container-fluid mt-4">
-
-
-            <div class="card shadow">
 
 
 
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <div class="p-6">
 
 
-                    <h5 class="mb-0">
+
+            <div class="bg-white shadow rounded-xl overflow-hidden">
+
+
+
+
+
+                {{-- Header --}}
+
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-b">
+
+
+                    <h2 class="text-xl font-semibold">
                         Department List
-                    </h5>
+                    </h2>
 
 
-                    <a href="{{ route('departments.create') }}" class="btn btn-primary">
+
+
+
+                    <a href="{{ route('departments.create') }}"
+                       class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+
                         + Add Department
+
                     </a>
+
 
 
                 </div>
@@ -155,43 +91,54 @@
 
 
 
-                <div class="card-body">
 
 
-                    <div class="table-responsive">
+
+                {{-- Table --}}
 
 
-                    <table class="table table-hover">
+                <div class="p-6 overflow-x-auto">
 
 
-                        <thead class="table-light">
+                    <table class="min-w-full text-left">
+
+
+
+                        <thead class="bg-gray-100">
 
 
                         <tr>
 
-                            <th>
+
+                            <th class="px-5 py-3">
                                 ID
                             </th>
 
-                            <th>
+
+                            <th class="px-5 py-3">
                                 Department Name
                             </th>
 
-                            <th>
+
+                            <th class="px-5 py-3">
                                 Department Head
                             </th>
 
-                            <th>
+
+                            <th class="px-5 py-3">
                                 Total Employees
                             </th>
 
-                            <th>
+
+                            <th class="px-5 py-3">
                                 Status
                             </th>
 
-                            <th>
+
+                            <th class="px-5 py-3">
                                 Action
                             </th>
+
 
                         </tr>
 
@@ -200,99 +147,177 @@
 
 
 
+
+
+
+
                         <tbody>
 
 
-@foreach ($departments as $department )
+
+                        @foreach ($departments as $department)
 
 
-                        <tr>
+
+                        <tr class="border-b hover:bg-gray-50">
 
 
-                            <td>
-                             {{$department->id}}
+
+                            <td class="px-5 py-4">
+                                {{$department->id}}
                             </td>
 
 
-                            <td>
+
+
+                            <td class="px-5 py-4">
                                 {{$department->dep_name}}
                             </td>
 
 
-                            <td>
+
+
+                            <td class="px-5 py-4">
                                 {{$department->dep_head}}
                             </td>
 
 
-                            <td>
-                               {{$department->total_employees}}
+
+
+
+                            <td class="px-5 py-4">
+                                {{$department->total_employees}}
                             </td>
 
 
-                            <td>
 
-                                <span class="badge bg-success">
+
+
+
+                            <td class="px-5 py-4">
+
+
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+
                                     Active
+
                                 </span>
 
+
                             </td>
 
 
-                            <td>
-
-                                <button class="btn btn-sm btn-info text-white">
-                                    View
-                                </button>
 
 
-                                <a href="{{ route('departments.edit',$department->id) }}" class="btn btn-sm btn-warning">
-                                    Edit
-</a>
 
 
-<form action="{{ route('departments.destroy',$department->id) }}" method="post">
 
-@csrf
-@method('DELETE ')
+                            <td class="px-5 py-4">
 
-                                <button class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
 
-</form>
+                                <div class="flex gap-2">
+
+
+
+
+
+                                    <button
+                                        class="bg-cyan-600 text-white px-3 py-1 rounded text-sm hover:bg-cyan-700">
+
+                                        View
+
+                                    </button>
+
+
+
+
+
+
+
+                                    <a href="{{ route('departments.edit',$department->id) }}"
+                                       class="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600">
+
+                                        Edit
+
+                                    </a>
+
+
+
+
+
+
+
+
+
+                                    <form action="{{ route('departments.destroy',$department->id) }}"
+                                          method="POST">
+
+
+                                        @csrf
+
+                                        @method('DELETE')
+
+
+
+                                        <button
+                                            class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">
+
+                                            Delete
+
+                                        </button>
+
+
+
+                                    </form>
+
+
+
+                                </div>
+
+
+
                             </td>
+
+
+
 
 
                         </tr>
 
-@endforeach
 
 
 
- 
+                        @endforeach
 
 
- 
+
+
 
 
                         </tbody>
 
 
+
                     </table>
-
-
-                    </div>
 
 
 
                 </div>
 
 
+
+
             </div>
 
 
 
+
+
+
         </div>
+
+
+
 
 
 
@@ -302,8 +327,6 @@
 
 </div>
 
-
-</div>
 
 
 </body>
