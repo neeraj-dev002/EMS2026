@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\departmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
-
+use App\Models\Employee;
 
 
 Route::get("/",function(){
@@ -23,7 +23,8 @@ Route::middleware("auth")->group(function(){
 
 //Dashboard
 Route::get("/dashboard",function(){
-return view("dashboard");
+    $employees = Employee::all();
+return view("dashboard", compact("employees"));
 })->name("dashboard");
 
 
