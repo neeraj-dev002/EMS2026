@@ -209,12 +209,12 @@
                                     <div class="flex gap-2">
 
 
-                                        <button
+                                        <a href="{{ route('employees.show',$employee->id) }}}"
                                             class="bg-cyan-600 text-white px-3 py-1 rounded text-sm hover:bg-cyan-700">
 
                                             View
 
-                                        </button>
+</a>
 
 
 
