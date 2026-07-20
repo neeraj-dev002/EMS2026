@@ -170,7 +170,7 @@
 
 
                                 <td class="px-5 py-4">
-                                    {{$employee->department}}
+                                    {{$employee->department->dep_name}}
                                 </td>
 
 
