@@ -7,99 +7,36 @@
 
     <title>Employees</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            background: #f5f6fa;
-        }
-
-        .sidebar {
-            min-height: 100vh;
-            background: #212529;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 12px 20px;
-        }
-
-        .sidebar a:hover {
-            background: #0d6efd;
-        }
-
-        .card {
-            border-radius: 15px;
-            border: none;
-        }
-    </style>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 
 </head>
 
-<body>
+<body class="bg-gray-100">
 
 
-<div class="container-fluid">
-
-<div class="row">
+<div class="flex min-h-screen">
 
 
-    <!-- Sidebar -->
-
-    <div class="col-md-2 sidebar p-0">
-
-        <h3 class="text-white text-center py-4">
-            EMS
-        </h3>
-
-
-        <a href="/dashboard">
-            Dashboard
-        </a>
-
-        <a href="/employees">
-            Employees
-        </a>
-
-        <a href="#">
-            Departments
-        </a>
-
-        <a href="#">
-            Attendance
-        </a>
-
-        <a href="#">
-            Leaves
-        </a>
-
-        <a href="#">
-            Payroll
-        </a>
-
-
-    </div>
+    {{-- Sidebar --}}
+    @include('partials.sidebar')
 
 
 
-    <!-- Main Content -->
+    {{-- Main Content --}}
+
+    <div class="flex-1">
 
 
-    <div class="col-md-10">
+        {{-- Navbar --}}
 
+        <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
 
-        <!-- Navbar -->
-
-        <nav class="navbar bg-white shadow-sm px-4">
-
-            <h4>
+            <h1 class="text-2xl font-bold text-gray-800">
                 Employees
-            </h4>
+            </h1>
 
 
-            <span>
+            <span class="font-semibold text-gray-700">
                 Admin
             </span>
 
@@ -107,22 +44,31 @@
 
 
 
-        <div class="container-fluid mt-4">
+
+        <div class="p-6">
 
 
-            <div class="card shadow">
+            {{-- Employee Card --}}
+
+            <div class="bg-white rounded-xl shadow">
 
 
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                {{-- Header --}}
+
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-b">
 
 
-                    <h5 class="mb-0">
+                    <h2 class="text-xl font-semibold">
                         Employee List
-                    </h5>
+                    </h2>
 
 
-                    <a  href="/employees/create" class="btn btn-primary">
+
+                    <a href="/employees/create"
+                       class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+
                         + Add Employee
+
                     </a>
 
 
@@ -130,208 +76,195 @@
 
 
 
-                <div class="card-body">
+
+                <div class="p-6">
 
 
 
-                    <!-- Search -->
+                    {{-- Search --}}
 
+                    <div class="mb-5">
 
-                    <div class="row mb-3">
-
-
-                        <div class="col-md-4">
-
-                            <input 
-                                type="text" 
-                                class="form-control"
-                                placeholder="Search employee..."
-                            >
-
-                        </div>
-
+                        <input 
+                            type="text"
+                            placeholder="Search employee..."
+                            class="w-full md:w-96 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
 
                     </div>
 
 
 
 
-                    <!-- Table -->
 
+                    {{-- Table --}}
 
-                    <div class="table-responsive">
+                    <div class="overflow-x-auto">
 
 
-                    <table class="table table-hover">
+                        <table class="min-w-full text-left">
 
 
-                        <thead class="table-light">
+                            <thead class="bg-gray-100">
 
-                        <tr>
 
-                            <th>
-                                ID
-                            </th>
+                            <tr>
 
-                            <th>
-                                Name
-                            </th>
+                                <th class="px-5 py-3">
+                                    ID
+                                </th>
 
-                            <th>
-                                Email
-                            </th>
+                                <th class="px-5 py-3">
+                                    Name
+                                </th>
 
-                            <th>
-                                Department
-                            </th>
+                                <th class="px-5 py-3">
+                                    Email
+                                </th>
 
-                            <th>
-                                Position
-                            </th>
+                                <th class="px-5 py-3">
+                                    Department
+                                </th>
 
-                            <th>
-                                Status
-                            </th>
+                                <th class="px-5 py-3">
+                                    Position
+                                </th>
 
-                            <th>
-                                Action
-                            </th>
+                                <th class="px-5 py-3">
+                                    Status
+                                </th>
 
-                        </tr>
+                                <th class="px-5 py-3">
+                                    Action
+                                </th>
 
-                        </thead>
+                            </tr>
 
 
+                            </thead>
 
-                        <tbody>
 
-  @foreach ($employees as $employee)
 
-                        <tr>
+                            <tbody>
 
-                            <td>
-                                {{$employee->id}}
-                            </td>
 
-                            <td>
-                                {{$employee->name}}
-                            </td>
+                            @foreach ($employees as $employee)
 
-                            <td>
-                                {{$employee->email}}
-                            </td>
 
-                            <td>
-                                {{$employee->department}}
-                            </td>
+                            <tr class="border-b hover:bg-gray-50">
 
-                            <td>
-                                {{$employee->position}}
-                            </td>
 
-                            <td>
+                                <td class="px-5 py-4">
+                                    {{$employee->id}}
+                                </td>
 
-                              @if($employee->status==1)
-                                <span class="badge bg-success">
-                                    Active
-                                </span>
-                                @else 
-                                <span class="badge bg-secondary">
-                                    Inactive
-                                </span>
-                                @endif
 
+                                <td class="px-5 py-4">
+                                    {{$employee->name}}
+                                </td>
 
 
-                            </td>
+                                <td class="px-5 py-4">
+                                    {{$employee->email}}
+                                </td>
 
 
-                            <td>
+                                <td class="px-5 py-4">
+                                    {{$employee->department}}
+                                </td>
 
-                                <button class="btn btn-sm btn-info text-white">
-                                    View
-                                </button>
 
-                                <a href="{{route('employees.edit',$employee->id)}}" class="btn btn-sm btn-warning">
-                                    Edit
-</a>
-<form action="{{route('employees.destroy',$employee->id)}}" method="POST">
- @csrf
- @method('DELETE')   
+                                <td class="px-5 py-4">
+                                    {{$employee->position}}
+                                </td>
 
-<button  class="btn btn-sm btn-danger">
-        Delete
-    </button>
-</form>
 
 
-                            </td>
+                                <td class="px-5 py-4">
 
 
-                        </tr>
+                                    @if($employee->status==1)
 
-@endforeach
+                                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                        Active
+                                    </span>
 
- 
+                                    @else
 
+                                    <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">
+                                        Inactive
+                                    </span>
 
-                        <!-- <tr>
+                                    @endif
 
-                            <td>
-                                EMP003
-                            </td>
 
-                            <td>
-                                Amit Kumar
-                            </td>
+                                </td>
 
-                            <td>
-                                amit@gmail.com
-                            </td>
 
-                            <td>
-                                Finance
-                            </td>
 
-                            <td>
-                                Accountant
-                            </td>
 
+                                <td class="px-5 py-4">
 
-                            <td>
 
-                                <span class="badge bg-secondary">
-                                    Inactive
-                                </span>
+                                    <div class="flex gap-2">
 
-                            </td>
 
+                                        <button
+                                            class="bg-cyan-600 text-white px-3 py-1 rounded text-sm hover:bg-cyan-700">
 
-                            <td>
+                                            View
 
-                                <button class="btn btn-sm btn-info text-white">
-                                    View
-                                </button>
+                                        </button>
 
-                                <button class="btn btn-sm btn-warning">
-                                    Edit
-                                </button>
 
-                                <button class="btn btn-sm btn-danger">
-                                    Delete
-                                </button>
 
+                                        <a href="{{route('employees.edit',$employee->id)}}"
+                                           class="bg-yellow-500 text-white px-3 py-1 rounded text-sm hover:bg-yellow-600">
 
-                            </td>
+                                            Edit
 
+                                        </a>
 
-                        </tr> -->
 
 
-                        </tbody>
 
+                                        <form action="{{route('employees.destroy',$employee->id)}}" method="POST">
 
-                    </table>
+                                            @csrf
+
+                                            @method('DELETE')
+
+
+                                            <button
+                                                class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700">
+
+                                                Delete
+
+                                            </button>
+
+
+                                        </form>
+
+
+                                    </div>
+
+
+                                </td>
+
+
+
+                            </tr>
+
+
+                            @endforeach
+
+
+
+                            </tbody>
+
+
+
+                        </table>
 
 
                     </div>
@@ -344,15 +277,11 @@
             </div>
 
 
-
         </div>
-
 
 
     </div>
 
-
-</div>
 
 </div>
 
